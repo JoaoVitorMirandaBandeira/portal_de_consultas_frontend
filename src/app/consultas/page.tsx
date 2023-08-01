@@ -1,33 +1,51 @@
 'use client'
 import Input from "@/components/input/input";
 import {ChangeEvent, useState} from "react";
+import Navbar from "@/components/navBar/navBarr";
+import CardForm from "@/components/form/form";
+import Link from "next/link";
 
 interface FormDataInterface{
-    input: string
+    email: string,
+    password: string
 }
 const Consultas= ()=>{
     const [formData, setFormData] = useState<FormDataInterface>({
-        input: ''
+        email: '',
+        password: ''
     })
     
     const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target
         setFormData((prevData) => ({
             ...prevData,
-            input: value,
+            [name]: value,
         }));
     }
     return(
-        <>
-            <div className="bg-primaryRubeus-system">
-                <h2>Ola mundo!</h2>
-                <Input
-                type="text"
-                value={formData.input}
-                name="input"
-                onChange={handleInputChange}/>
+        <div className="h-[100vh]">
+            <Navbar/>
+            <div className="flex justify-center items-center h-[90vh] ">
+                <CardForm title="Login">
+                    <Input
+                    label="E-mail:"
+                    type="text"
+                    value={formData.email}
+                    name="email"
+                    onChange={handleInputChange}/>
+                    <Input
+                    label="Senha:"
+                    type="password"
+                    value={formData.password}
+                    name="password"
+                    onChange={handleInputChange}/>
+                    <button className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
+                        Acessar
+                    </button>
+                    <Link href='/cadastro' className="text-sm text-primaryRubeus-green">Não tenho conta!</Link>
+                </CardForm>
             </div>
-        </>
+        </div> 
     )
 }
 
