@@ -14,6 +14,15 @@ module.exports = {
       },
       fontFamily: {
         body: ['Proxima Nova', 'system-ui', 'sans-serif']
+      },
+      colors: {
+        primaryRubeus: {
+          green: "#0DA6A6",
+          red: "#FF0031",
+          gray: "#4D4D4D",
+          system: "#D4D4D4",
+          strong: "#1A1A1A"
+        }
       }
     },
   },

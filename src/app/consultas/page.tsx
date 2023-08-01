@@ -19,12 +19,14 @@ const Consultas= ()=>{
     }
     return(
         <>
-            <h2>Ola mundo!</h2>
-            <Input
-            type="text"
-            value={formData.input}
-            name="input"
-            onChange={handleInputChange}/>
+            <div className="bg-primaryRubeus-system">
+                <h2>Ola mundo!</h2>
+                <Input
+                type="text"
+                value={formData.input}
+                name="input"
+                onChange={handleInputChange}/>
+            </div>
         </>
     )
 }
