@@ -4,7 +4,6 @@ import { ChangeEvent, useState } from "react";
 import Navbar from "@/components/navBar/navBarr";
 import CardForm from "@/components/form/form";
 import Link from "next/link";
-import Head from "next/head";
 
 interface FormDataInterface {
     email: string,
