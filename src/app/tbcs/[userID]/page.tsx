@@ -9,7 +9,7 @@ interface TbcsPropsInteface {
 const Tbcs = ({ params }: TbcsPropsInteface) => {
     return (
         <>
-            <Navbar />
+            <Navbar userName="Joao" />
             <main className="mx-12">
                 <section className="flex justify-between py-5 items-center">
                     <h3 className="font-semibold  text-primaryRubeus-gray text-lg">TBC`s Cadastrados</h3>
