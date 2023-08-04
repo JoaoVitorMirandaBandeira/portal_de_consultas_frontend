@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import Navbar from "@/components/navBar/navBarr";
 import CardForm from "@/components/form/form";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface FormDataInterface {
     email: string,
@@ -14,13 +15,19 @@ const Login = () => {
         email: '',
         password: ''
     })
+    const router = useRouter()
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target
+    function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+    }
+
+    const redirectUser = async () => {
+        const userID = '1234'
+        router.push(`tbcs/${userID}`)
     }
     return (
         <>
@@ -43,7 +50,7 @@ const Login = () => {
                             name="password"
                             required
                             onChange={handleInputChange} />
-                        <button className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
+                        <button onClick={redirectUser} className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
                             Acessar
                         </button>
                         <Link href='/cadastro' className="text-sm text-primaryRubeus-green">Não tenho conta!</Link>

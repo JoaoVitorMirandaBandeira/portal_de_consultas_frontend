@@ -11,7 +11,6 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
         <>
             <Navbar />
             <main className="mx-12">
-                {params.userID}
                 <section className="flex justify-between py-5 items-center">
                     <h3 className="font-semibold  text-primaryRubeus-gray text-lg">TBC`s Cadastrados</h3>
                     <button className="bg-primaryRubeus-green px-6 py-1 rounded-lg text-white font-semibold flex items-center"><FontAwesomeIcon className="w-4 mr-1" icon={faPlus} />Cadastrar</button>

@@ -3,6 +3,7 @@ import CardForm from "@/components/form/form";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navBar/navBarr";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 interface FormDataInterface {
@@ -20,12 +21,19 @@ export default function Cadastro() {
         confirmPassWord: ""
     })
 
+    const router = useRouter()
+
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }))
+    }
+
+    const redirectUser = async () => {
+        const userID = '1234'
+        router.push(`tbcs/${userID}`)
     }
     return (
         <>
@@ -64,7 +72,7 @@ export default function Cadastro() {
                             minLength={8}
                             required
                             onChange={handleInputChange} />
-                        <button className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
+                        <button onClick={redirectUser} className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
                             Concluir
                         </button>
                         <Link href='/login' className="text-sm text-primaryRubeus-green">Já Possuo conta!</Link>
