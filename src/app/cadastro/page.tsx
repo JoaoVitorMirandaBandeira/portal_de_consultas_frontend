@@ -1,7 +1,7 @@
 'use client'
 import CardForm from "@/components/form/form";
 import Input from "@/components/input/input";
-import Navbar from "@/components/navBar/navBarr";
+import Navbar from "@/components/navBar/navBar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
