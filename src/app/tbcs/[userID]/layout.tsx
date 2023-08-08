@@ -1,4 +1,8 @@
+'use client'
+import PrivateRouter from '@/components/privateRouter/privateRouter'
+import checkIsPublicRouter from '@/functions/checkPublicRouter'
 import type { Metadata } from 'next'
+import { usePathname } from 'next/navigation'
 
 export const metadata: Metadata = {
     title: 'TBCs',
@@ -11,12 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-}: {
+  }: {
     children: React.ReactNode
-}) {
+  }) {
+    const pathname = usePathname()
+  
+    const isPublicRouter = checkIsPublicRouter(pathname)
     return (
-        <html lang="pt-br">
-            <body >{children}</body>
-        </html>
+      <html lang="pt-br">
+        <body>
+          {isPublicRouter && children}
+          {!isPublicRouter && <PrivateRouter>{children}</PrivateRouter>}
+        </body>
+      </html>
     )
-}
+  }
