@@ -2,6 +2,7 @@ import Navbar from "@/components/navBar/navBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CardTBC from "@/components/cardTbc/cardTbc";
+import CadastrarTBC from "@/components/modals/cadastrarTBC/cadastrarTBC";
 
 interface TbcsPropsInteface {
     params: { userID: string }
@@ -17,11 +18,12 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
                     <button className="bg-primaryRubeus-green px-6 py-1 rounded-lg text-white font-semibold flex items-center"><FontAwesomeIcon className="w-4 mr-1" icon={faPlus} />Cadastrar</button>
                 </section>
                 <section className="bg-white w-[98%] mx-auto pt-5 rounded-lg">
-                    <CardTBC/>
-                    <CardTBC/>
-                    <CardTBC/>
+                    <CardTBC />
+                    <CardTBC />
+                    <CardTBC />
                 </section>
             </main>
+            <CadastrarTBC />
         </>
     )
 

@@ -1,15 +1,21 @@
-import { Metadata } from 'next'
+'use client'
+import { Metadata, NextApiRequest } from 'next'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export const metadata: Metadata = {
-  title:"Home"
+  title: "Home"
 }
 export default function Home() {
+  const { push } = useRouter()
+
+  useEffect(() => {
+    push('/login')
+  })
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Home
-        
-      </h1>
-    </main>
+    <>
+    </>
   )
 }
