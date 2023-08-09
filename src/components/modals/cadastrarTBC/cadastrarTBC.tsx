@@ -8,7 +8,7 @@ const CadastrarTBC = () => {
                 label="Nome"
                 type="text"
                 value="2"
-                onChange={() => this}
+                onChange={() => { console.log("") }}
             />
         </div>
     )

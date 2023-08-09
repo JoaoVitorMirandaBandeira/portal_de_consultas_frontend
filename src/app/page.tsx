@@ -1,7 +1,7 @@
 'use client'
 import { Metadata, NextApiRequest } from 'next'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 export const metadata: Metadata = {

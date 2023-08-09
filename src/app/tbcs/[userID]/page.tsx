@@ -2,8 +2,6 @@ import Navbar from "@/components/navBar/navBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CardTBC from "@/components/cardTbc/cardTbc";
-import CadastrarTBC from "@/components/modals/cadastrarTBC/cadastrarTBC";
-
 interface TbcsPropsInteface {
     params: { userID: string }
 }
@@ -23,7 +21,6 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
                     <CardTBC />
                 </section>
             </main>
-            <CadastrarTBC />
         </>
     )
 
