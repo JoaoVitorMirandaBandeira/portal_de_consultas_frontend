@@ -2,9 +2,10 @@
 import CardForm from "@/components/form/form";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navBar/navBar";
+import registerUser from "@/functions/registerUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 interface FormDataInterface {
     name: string,
@@ -20,7 +21,7 @@ export default function Cadastro() {
         passWord: "",
         confirmPassWord: ""
     })
-
+    const [erro,setErro] =useState('')
     const router = useRouter()
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,53 +32,70 @@ export default function Cadastro() {
         }))
     }
 
-    const redirectUser = async () => {
-        const userID = '1234'
-        router.push(`tbcs/${userID}`)
+    //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/g
+    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        try {
+            event.preventDefault()
+            setErro('')
+            const regex =  /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
+            if(formData.passWord !== formData.confirmPassWord) throw new Error("As senhas não são iguais")
+            if(!regex.test(formData.passWord)){
+                throw new Error(`Sua senha deve ter letras maiuscula minusculas, numeros e caracteres especiais `)
+            } 
+            const user = await registerUser(formData)
+            console.log(user)
+            router.push(`login`)
+        } catch (error: any) {
+            setErro(error.message)
+        }
     }
     return (
         <>
             <title>Cadastro</title>
             <div className="h-[100vh]">
                 <Navbar />
-                <div className="flex justify-center items-center h-[90vh] ">
-                    <CardForm title="Cadastro">
-                        <Input
-                            label="Nome:"
-                            type="text"
-                            value={formData.name}
-                            name="name"
-                            required
-                            onChange={handleInputChange} />
-                        <Input
-                            label="E-mail:"
-                            type="text"
-                            value={formData.email}
-                            name="email"
-                            required
-                            onChange={handleInputChange} />
-                        <Input
-                            label="Senha:"
-                            type="password"
-                            value={formData.passWord}
-                            name="passWord"
-                            minLength={8}
-                            required
-                            onChange={handleInputChange} />
-                        <Input
-                            label="Confirme sua senha:"
-                            type="password"
-                            value={formData.confirmPassWord}
-                            name="confirmPassWord"
-                            minLength={8}
-                            required
-                            onChange={handleInputChange} />
-                        <button onClick={redirectUser} className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
-                            Concluir
-                        </button>
-                        <Link href='/login' className="text-sm text-primaryRubeus-green">Já Possuo conta!</Link>
-                    </CardForm>
-                </div>
+                <form onSubmit={handleFormSubmit}>
+
+                    <div className="flex justify-center items-center h-[90vh] ">
+                        <CardForm title="Cadastro">
+                            <Input
+                                label="Nome:"
+                                type="text"
+                                value={formData.name}
+                                name="name"
+                                required
+                                onChange={handleInputChange} />
+                            <Input
+                                label="E-mail:"
+                                type="text"
+                                value={formData.email}
+                                name="email"
+                                required
+                                onChange={handleInputChange} />
+                            <Input
+                                label="Senha:"
+                                type="password"
+                                value={formData.passWord}
+                                name="passWord"
+                                minLength={8}
+                                required
+                                onChange={handleInputChange} />
+                            <Input
+                                label="Confirme sua senha:"
+                                type="password"
+                                value={formData.confirmPassWord}
+                                name="confirmPassWord"
+                                minLength={8}
+                                required
+                                onChange={handleInputChange} />
+                            {erro && <p className="text-primaryRubeus-red">{erro}</p>}
+                            <button type="submit" className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
+                                Concluir
+                            </button>
+                            <Link href='/login' className="text-sm text-primaryRubeus-green">Já Possuo conta!</Link>
+                        </CardForm>
+                    </div>
+                </form>
             </div>
         </>
     )
