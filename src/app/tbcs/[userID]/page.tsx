@@ -7,6 +7,8 @@ import Image from 'next/image'
 import fetchTbcsUser from "@/functions/fetchTbcUser";
 import { useEffect, useState } from "react";
 import { TTbc } from "@/@types/TTbc";
+import Loading from "@/components/loading/loading";
+import { TTbcResponse } from "@/@types/TTbcResponse";
 interface TbcsPropsInteface {
     params: { userID: string }
 }
@@ -14,24 +16,27 @@ interface TbcsPropsInteface {
 const Tbcs = ({ params }: TbcsPropsInteface) => {
     const [tbcData, setTbc] = useState<TTbc[]>([])
     const [loading, setLoading] = useState(true)
+    const [userData,setUserData] = useState<TTbcResponse>()
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchTbcsUser(params.userID)
-            setTbc(data.tbcs)
+            setUserData(data)
+            setTbc(data[0].tbcs)
             setLoading(false)
         }
         setTimeout(fetchData, 2000)
     }, [params.userID])
-
+    console.log(userData)
     return (
         <>
             <title>TBC`s</title>
-            {loading && (
-                <div className="bg-white bg-opacity-50 z-50 h-screen w-screen fixed flex justify-center items-center">
-                    <Image src="/rbGif.gif" alt='Gif logo de loading' width={80} height={80} />
-                </div>
-            )}
-            <Navbar userName="Joao" />
+            {loading && <>
+                <Loading/>
+                <Navbar />
+            </>}
+            {(!loading) && userData && (
+            <>
+            <Navbar userName={userData[0].name} />
             <main className="mx-12">
                 { (!loading) && (
                     <>
@@ -45,9 +50,8 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
                             <CardTBC key='3' />
                         </section>
                     </>)}
-
-
             </main>
+            </>)}
         </>
     )
 
