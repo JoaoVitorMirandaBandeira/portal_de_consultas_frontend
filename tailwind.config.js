@@ -13,7 +13,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        body: ['Proxima Nova', 'system-ui', 'sans-serif']
+        body: ['Roboto','sans-serif']
       },
       colors: {
         primaryRubeus: {

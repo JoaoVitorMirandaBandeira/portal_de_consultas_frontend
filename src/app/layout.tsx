@@ -19,13 +19,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-
-  const isPublicRouter = checkIsPublicRouter(pathname)
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        {isPublicRouter && children}
-        {!isPublicRouter && <PrivateRouter>{children}</PrivateRouter>}
+        {children}
       </body>
     </html>
   )

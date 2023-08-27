@@ -10,12 +10,12 @@
 
 @layer base {
   html {
-    font-family: Proxima Nova, system-ui, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-start-rgb));
-  
+  font-family: 'Roboto', sans-serif !important;
 }
