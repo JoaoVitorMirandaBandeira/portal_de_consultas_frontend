@@ -46,8 +46,8 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
                         </section>
                         <section className="bg-white w-[98%] mx-auto pt-5 rounded-lg">
                             {
-                                tbcData.map((element) => {
-                                    return <CardTBC key={element.id} title={element.description}/>
+                                tbcData.map((element,index) => {
+                                    return <CardTBC key={index} title={element.description}/>
                                 })
                             }
                         </section>
