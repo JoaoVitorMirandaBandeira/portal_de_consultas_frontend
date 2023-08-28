@@ -45,9 +45,11 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
                             <button className="bg-primaryRubeus-green px-6 py-1 rounded-lg text-white font-semibold flex items-center"><FontAwesomeIcon className="w-4 mr-1" icon={faPlus} />Cadastrar</button>
                         </section>
                         <section className="bg-white w-[98%] mx-auto pt-5 rounded-lg">
-                            <CardTBC key='1' />
-                            <CardTBC key='2' />
-                            <CardTBC key='3' />
+                            {
+                                tbcData.map((element) => {
+                                    return <CardTBC key={element.id} title={element.description}/>
+                                })
+                            }
                         </section>
                     </>)}
             </main>
