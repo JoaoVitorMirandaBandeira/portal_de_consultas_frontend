@@ -34,7 +34,6 @@ const Login = () => {
             setErro('')
             console.log(formData)
             const user = await loginUser(formData)
-            console.log(user)
             Cookies.set('Atentication',user.token)
             router.push(`tbcs/${user.user.id}`)
         } catch (error:any) {

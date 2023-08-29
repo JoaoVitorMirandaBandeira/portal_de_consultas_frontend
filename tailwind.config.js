@@ -18,11 +18,15 @@ module.exports = {
       colors: {
         primaryRubeus: {
           green: "#0DA6A6",
+          greenLight: "#3DD5D6",
           red: "#FF0031",
           gray: "#4D4D4D",
-          grayLight: '#c7c7c7',
+          grayLight: '#808080',
           system: "#F8FAFC",
-          strong: "#1A1A1A"
+          strong: "#1A1A1A",
+          vetores: "#CCCCCC",
+          hover: "#f5f5f5"
+          
         }
       }
     },
