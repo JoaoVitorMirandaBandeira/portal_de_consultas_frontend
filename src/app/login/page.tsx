@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import loginUser from "@/functions/loginUser";
 import Cookies from "js-cookie";
+import Loading from "@/components/loading/loading";
 
 interface FormDataInterface {
     email: string,
@@ -18,6 +19,7 @@ const Login = () => {
         password: ''
     })
     const [erro,setErro] = useState('')
+    const [loading,setLoading] = useState<boolean>(false)
     const router = useRouter()
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -31,12 +33,16 @@ const Login = () => {
     const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault()
+            setLoading(true)
+            await new Promise(resolve => setTimeout(resolve, 1500));
             setErro('')
             console.log(formData)
             const user = await loginUser(formData)
             Cookies.set('Atentication',user.token)
+            setLoading(false)
             router.push(`tbcs/${user.user.id}`)
         } catch (error:any) {
+            setLoading(false)
             setErro(error.message)
         }
     }
@@ -49,6 +55,7 @@ const Login = () => {
         <>
             <title>Login</title>
             <div className="h-[100vh]">
+                {loading && <Loading/>}
                 <Navbar />
                 <div className="flex justify-center items-center h-[90vh] ">
                     <form onSubmit={handleFormSubmit}>
@@ -76,6 +83,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+            
         </>
     )
 }
