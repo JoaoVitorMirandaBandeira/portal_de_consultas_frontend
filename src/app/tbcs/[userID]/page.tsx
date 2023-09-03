@@ -13,6 +13,7 @@ import { TTbcResponse } from "@/@types/TTbcResponse";
 import Input from "@/components/input/input";
 import Button, { ButtonProps } from '@mui/material/Button';
 import PopupCadastroTbc from "@/components/popupCadastroTbc/PopupCadastroTbc";
+import AddIcon from '@mui/icons-material/Add';
 interface TbcsPropsInteface {
     params: { userID: string }
 }
@@ -46,7 +47,7 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
             <main className="mx-12">
                 <section className="flex justify-between py-10 items-center ">
                     <h3 className="font-semibold  text-primaryRubeus-gray text-xl">TBC`s Cadastrados</h3>
-                    <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800 }} onClick={() => { sendActivePopup(true) }}><FontAwesomeIcon className="w-4 mr-1" icon={faPlus} />Cadastrar</Button>
+                    <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800 }} onClick={() => { sendActivePopup(true) }}><AddIcon/>Cadastrar</Button>
 
                 </section>
                 <section className="bg-white w-[98%] mx-auto pt-3 rounded-lg">
