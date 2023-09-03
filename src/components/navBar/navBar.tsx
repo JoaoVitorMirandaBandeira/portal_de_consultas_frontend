@@ -1,10 +1,8 @@
 import Image from "next/image"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
-import Loading from "../loading/loading"
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 type TNavBarProps = {
     userName?: string,
@@ -29,7 +27,7 @@ export default function Navbar({ userName, updateCounter }: TNavBarProps) {
                 <p className="font-semibold px-3 text-primaryRubeus-gray text-sm">PORTAL DE CONSULTAS</p>
             </div>
             <div>
-                {userName && <p onClick={logout} className="font-semibold px-3 text-sm text-primaryRubeus-gray flex items-center cursor-pointer">{userName.toUpperCase()}<FontAwesomeIcon className="w-4 ml-1" icon={faArrowRightFromBracket} /></p>}
+                {userName && <p onClick={logout} className="font-semibold px-3 text-sm text-primaryRubeus-gray flex items-center cursor-pointer">{userName.toUpperCase()}<LogoutIcon/></p>}
             </div>
         </nav>
     )

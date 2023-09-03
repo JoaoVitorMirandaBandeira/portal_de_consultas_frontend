@@ -1,17 +1,12 @@
 'use client'
 import Navbar from "@/components/navBar/navBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import CardTBC from "@/components/cardTbc/cardTbc";
-import Image from 'next/image'
 import fetchTbcsUser from "@/functions/fetchTbcUser";
 import { useEffect, useState } from "react";
 import { TTbc } from "@/@types/TTbc";
 import Loading from "@/components/loading/loading";
 import { TTbcResponse } from "@/@types/TTbcResponse";
-//import Button from "@/components/button/button";
-import Input from "@/components/input/input";
-import Button, { ButtonProps } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import PopupCadastroTbc from "@/components/popupCadastroTbc/PopupCadastroTbc";
 import AddIcon from '@mui/icons-material/Add';
 interface TbcsPropsInteface {

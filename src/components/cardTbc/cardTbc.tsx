@@ -1,5 +1,6 @@
 import { faPenToSquare, faServer,faHourglass2,faRocket } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {RocketLaunchRounded,HourglassTopRounded} from '@mui/icons-material';
 type TCardTbc = {
     title:string,
     link:string,
@@ -19,7 +20,7 @@ const CardTBC = ({title,link,homolog}:TCardTbc) => {
                     <p>{link}</p>
                 </div>
                 <div className="col-start-10 col-span-2  text-primaryRubeus-gray">
-                    <p>{homolog ? <FontAwesomeIcon icon={faHourglass2} className="w-6"/> : <FontAwesomeIcon icon={faRocket} className="w-6"/>}</p>
+                    <p>{homolog ?<HourglassTopRounded/> :<RocketLaunchRounded/> }</p>
                 </div>
                 <div className="text-primaryRubeus-grayLight hover:text-primaryRubeus-gray col-start-12 justify-self-end">
                     <button>

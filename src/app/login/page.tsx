@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import loginUser from "@/functions/loginUser";
 import Cookies from "js-cookie";
 import Loading from "@/components/loading/loading";
+import { Button } from "@mui/material";
 
 interface FormDataInterface {
     email: string,
@@ -18,8 +19,8 @@ const Login = () => {
         email: '',
         password: ''
     })
-    const [erro,setErro] = useState('')
-    const [loading,setLoading] = useState<boolean>(false)
+    const [erro, setErro] = useState('')
+    const [loading, setLoading] = useState<boolean>(false)
     const router = useRouter()
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -38,10 +39,10 @@ const Login = () => {
             setErro('')
             console.log(formData)
             const user = await loginUser(formData)
-            Cookies.set('Atentication',user.token)
+            Cookies.set('Atentication', user.token)
             router.push(`tbcs/${user.user.id}`)
             setLoading(false)
-        } catch (error:any) {
+        } catch (error: any) {
             setLoading(false)
             setErro(error.message)
         }
@@ -55,7 +56,7 @@ const Login = () => {
         <>
             <title>Login</title>
             <div className="h-[100vh]">
-                {loading && <Loading/>}
+                {loading && <Loading />}
                 <Navbar />
                 <div className="flex justify-center items-center h-[90vh] ">
                     <form onSubmit={handleFormSubmit}>
@@ -75,15 +76,13 @@ const Login = () => {
                                 required
                                 onChange={handleInputChange} />
                             {erro && <p className="text-primaryRubeus-red">{erro}</p>}
-                            <button type="submit" className="bg-primaryRubeus-green px-10 py-1 rounded-lg text-white font-semibold">
-                                Acessar
-                            </button>
+                            <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800,padding: '6px 30px'}}  type="submit">Acessar</Button>
                             <Link href='/cadastro' className="text-sm text-primaryRubeus-green">Não tenho conta!</Link>
                         </CardForm>
                     </form>
                 </div>
             </div>
-            
+
         </>
     )
 }
