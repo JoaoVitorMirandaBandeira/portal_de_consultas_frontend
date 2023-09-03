@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import loginUser from "@/functions/loginUser";
 import Cookies from "js-cookie";
 import Loading from "@/components/loading/loading";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 interface FormDataInterface {
     email: string,
@@ -41,7 +41,6 @@ const Login = () => {
             const user = await loginUser(formData)
             Cookies.set('Atentication', user.token)
             router.push(`tbcs/${user.user.id}`)
-            setLoading(false)
         } catch (error: any) {
             setLoading(false)
             setErro(error.message)
@@ -61,22 +60,30 @@ const Login = () => {
                 <div className="flex justify-center items-center h-[90vh] ">
                     <form onSubmit={handleFormSubmit}>
                         <CardForm title="Login">
-                            <Input
+                            <TextField
+                                id="email"
                                 label="E-mail:"
-                                type="text"
+                                variant="filled"
                                 value={formData.email}
+                                type="email"
                                 name="email"
-                                required
-                                onChange={handleInputChange} />
-                            <Input
+                                onChange={handleInputChange} 
+                                helperText={erro}
+                                error={(erro?true:false)}
+                            />
+                            <TextField
+                                id="senha"
                                 label="Senha:"
-                                type="password"
+                                variant="filled"
                                 value={formData.password}
+                                type="password"
                                 name="password"
-                                required
-                                onChange={handleInputChange} />
-                            {erro && <p className="text-primaryRubeus-red">{erro}</p>}
-                            <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800,padding: '6px 30px'}}  type="submit">Acessar</Button>
+                                onChange={handleInputChange} 
+                                error={(erro?true:false)}
+                                helperText={erro}
+                            />
+                            {/*erro && <p className="text-primaryRubeus-red">{erro}</p>*/}
+                            <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800, padding: '6px 30px' }} type="submit">Acessar</Button>
                             <Link href='/cadastro' className="text-sm text-primaryRubeus-green">Não tenho conta!</Link>
                         </CardForm>
                     </form>
