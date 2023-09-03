@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg: boolean) => void }) {
     return (
