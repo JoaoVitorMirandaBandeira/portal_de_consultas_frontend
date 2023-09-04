@@ -4,7 +4,7 @@ import {Close, Save} from '@mui/icons-material';
 export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg: boolean) => void }) {
     return (
         <div className="bg-white bg-opacity-50 z-50 h-[100%] w-screen fixed flex justify-center items-center">
-            <div className="bg-gray-400 rounded-t-lg w-3/5">
+            <div className="bg-gray-400 rounded-t-lg w-[27rem]">
                 <div className="flex justify-end bg-gray-300  rounded-t-lg">
                     <button className="w-7 h-7 text-xl" onClick={() => { onClickPopup(false) }}><Close/></button>
                 </div>
