@@ -13,7 +13,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        body: ['Roboto','sans-serif']
+        body: ['Roboto', 'sans-serif']
       },
       colors: {
         primaryRubeus: {
@@ -25,8 +25,10 @@ module.exports = {
           system: "#F8FAFC",
           strong: "#1A1A1A",
           vetores: "#CCCCCC",
-          hover: "#f5f5f5"
-          
+          hover: "#f5f5f5",
+          transparente: "rgba(0,0,0,.32);",
+          navPopup: '#eaeaea;'
+
         }
       }
     },
