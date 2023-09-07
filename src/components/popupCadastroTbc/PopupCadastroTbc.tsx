@@ -1,5 +1,13 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Close, Save } from '@mui/icons-material';
+import styled from "styled-components";
+
+export const FlexContainer  = styled.div`
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.25rem;
+`;
+
 
 export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg: boolean) => void }) {
     return (
@@ -9,11 +17,18 @@ export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg:
                     <h2 className="font-bold text-primaryRubeus-gray">Adicionar um novo TBC</h2>
                     <button className="w-5 h-7 text-xl text-primaryRubeus-gray" onClick={() => { onClickPopup(false) }}><Close /></button>
                 </div>
-                <div className="bg-white  h-[16.5rem]">
+                <div className="bg-white">
                     <form className="flex flex-col justify-between h-[100%]" >
-                        <div className="flex justify-around mt-5">
-                            <TextField id="tbc" label="Link TBC" variant="filled" />
-                            <FormControl id="sistema" variant="filled" sx={{ minWidth: 130 }}>
+                        <div className="flex justify-center mt-5">
+                            <TextField id="description" label="Descrição" variant="filled" sx={{width: '90%'}} />
+                        </div>
+                        <FlexContainer >
+                            <TextField id="username" label="Usuario" sx={{ width: '40%' }} variant="filled" type="text" />
+                            <TextField id="password" label="Senha" sx={{width: '40%' }} variant="filled" type="password" />
+                        </FlexContainer >
+                        <FlexContainer >
+                            <TextField id="codcoligada" label="Cod. Coligada" sx={{width: '40%' }} variant="filled" type="number" inputProps={{ min: 0 }} />
+                            <FormControl id="sistema" variant="filled" sx={{ minWidth: '40%' }}>
                                 <InputLabel id="demo-simple-select-filled-label">Sistema</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-filled-label"
@@ -22,11 +37,11 @@ export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg:
                                     <MenuItem value={'S'}>S</MenuItem>
                                 </Select>
                             </FormControl>
-                        </div>
-                        <div className="flex justify-around mt-5">
-                            <TextField id="description" label="Descrição" variant="filled" />
-                            <TextField id="codcoligada" label="Cod. Coligada" sx={{ width: 130 }} variant="filled" type="number" inputProps={{ min: 0 }} />
-                        </div>
+                        </FlexContainer >
+                        <FlexContainer className="items-center mb-5" >
+                            <TextField id="tbc" label="Link TBC" variant="filled" sx={{width: '60%' }} />
+                            <Button variant="outlined" style={{ fontWeight: 700,color:'#0da6a6', height:36  }}>Validar</Button>
+                        </FlexContainer >
                         <div className="h-[50px]">
                             <hr className="pb-1" />
                             <div className="flex justify-end pr-3">
