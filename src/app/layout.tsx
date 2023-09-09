@@ -2,6 +2,12 @@
 import './globals.css'
 import { ThemeProvider } from '@mui/system';
 import theme from '../../theme'
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  weight: '400', // Peso da fonte
+  subsets: ['latin'], // Subconjuntos de caracteres (ajuste conforme necessário)
+});
 
 export default function RootLayout({
   children,
@@ -10,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body>
+      <body className={poppins.className}>
         <ThemeProvider theme={theme}>
           {children}
         </ThemeProvider>
