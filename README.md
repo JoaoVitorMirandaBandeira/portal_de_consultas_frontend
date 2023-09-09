@@ -34,4 +34,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # portal_de_consultas_front
 
-## Link to access the application: https://portal-de-consultas-frontend.vercel.app [https://portal-de-consultas-frontend.vercel.app](https://portal-de-consultas-frontend.vercel.app)
+## Link to access the application: [https://portal-de-consultas-frontend.vercel.app](https://portal-de-consultas-frontend.vercel.app)
