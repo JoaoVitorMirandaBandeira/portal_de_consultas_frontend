@@ -3,7 +3,7 @@ import { TRegisterResponse } from "@/@types/TRegisterResponse";
 
 const registerUser = async (formData: TRegister): Promise<TRegisterResponse> => {
     try {
-        const require = await fetch(`https://rubeus-portal-consultas.cyclic.app/register`, {
+        const require = await fetch(`https://rubeus-portal-consulta.cyclic.app/register`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -18,10 +18,10 @@ const registerUser = async (formData: TRegister): Promise<TRegisterResponse> => 
             })
         })
         const json = await require.json()
-        if(require.status !== 201) throw new Error(json.error)
+        if (require.status !== 201) throw new Error(json.error)
         console.log(json)
         return json
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error.message)
     }
 
