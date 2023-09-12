@@ -85,7 +85,7 @@ const Login = () => {
                                 helperText={erro}
                             />
                             {/*erro && <p className="text-primaryRubeus-red">{erro}</p>*/}
-                            <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 800, padding: '6px 30px',color: "#FFFFFF" }} type="submit">Acessar</Button>
+                            <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 600, padding: '6px 30px',color: "#FFFFFF" }} type="submit">Acessar</Button>
                             <Link href='/cadastro' className="text-sm text-primaryRubeus-green">Não tenho conta!</Link>
                         </CardForm>
                     </form>
