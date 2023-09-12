@@ -8,15 +8,9 @@ interface InputInterface extends React.InputHTMLAttributes<HTMLInputElement> {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function Input({ value, type, label, onChange, ...props }: InputInterface) {
+export default function Input({ value, type, label, onChange }: InputInterface) {
     return (
         <div className="flex flex-col">
-            {/*<label>{label}</label>
-            <input className="bg-gray-100 border border-gray-300 font-body rounded-tr-[4px] focus:outline-none focus:border-b-blue-400 focus:border-b-2 px-2 pt-2 pb-0 text-sm w-72"
-                    value={value}
-                    type={type} 
-                    onChange={onChange}
-                    {...props}/>*/}
             <TextField
                 id="filled-basic"
                 label={label}
@@ -24,8 +18,6 @@ export default function Input({ value, type, label, onChange, ...props }: InputI
                 value={value}
                 type={type}
                 onChange={onChange}
-                color="primary" // Ou qualquer outro valor permitido
-                {...props}
             />
         </div>
     )

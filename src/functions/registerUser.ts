@@ -18,10 +18,10 @@ const registerUser = async (formData: TRegister): Promise<TRegisterResponse> => 
             })
         })
         const json = await require.json()
-        if(require.status !== 201) throw new Error(json.error)
+        if (require.status !== 201) throw new Error(json.error)
         console.log(json)
         return json
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error.message)
     }
 
