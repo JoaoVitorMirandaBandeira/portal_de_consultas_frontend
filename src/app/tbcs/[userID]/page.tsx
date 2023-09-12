@@ -19,16 +19,18 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
     const [userData, setUserData] = useState<TTbcResponse>()
     const [activePopup, setActivePopup] = useState<boolean>(false)
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetchTbcsUser(params.userID)
-            setUserData(data)
-            setTbc(data[0].tbcs)
-            setLoading(false)
-        }
-        setTimeout(fetchData, 2000)
+        setTimeout(searchUserTbcs, 2000)
     }, [params.userID])
+
     const sendActivePopup = (arg:boolean) => {
         setActivePopup(arg)
+    }
+
+    const searchUserTbcs = async () => {
+        const data = await fetchTbcsUser(params.userID)
+        setUserData(data)
+        setTbc(data[0].tbcs)
+        setLoading(false)
     }
     console.log(userData)
     return (
@@ -37,7 +39,7 @@ const Tbcs = ({ params }: TbcsPropsInteface) => {
             {loading && <>
                 <Loading />
             </>}
-            {activePopup && <PopupCadastroTbc onClickPopup={sendActivePopup} />}
+            {activePopup && <PopupCadastroTbc onClickPopup={sendActivePopup} userId={params.userID} handleFather={searchUserTbcs} />}
             {(userData && userData.length > 0) ? <Navbar userName={userData[0].name} updateCounter={setLoading} /> : <Navbar updateCounter={setLoading} />}
             <main className="mx-12">
                 <section className="flex justify-between py-10 items-center ">

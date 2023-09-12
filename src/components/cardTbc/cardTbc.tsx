@@ -18,7 +18,8 @@ const CardTBC = ({ title, link, homolog }: TCardTbc) => {
                     <h1 className="truncate ml-3 w-40 sm:w-72 md:w-full lg:w-full xl:w-full"><abbr className="no-underline" title={title} >{title}</abbr></h1>
                 </div>
                 <div className="col-start-5 col-span-5 text-primaryRubeus-gray">
-                    <p>{link}</p>
+                    <p className="truncate ml-3 w-36 sm:w-64 md:w-11/12 lg:w-11/12 xl:w-11/12"><abbr className="no-underline" title={link} >{link}</abbr></p>
+{/*                     <p>{link}</p> */}
                 </div>
                 <div className="col-start-10 col-span-2  text-primaryRubeus-gray">
                     <p>{homolog ? <HourglassTopRounded /> : <RocketLaunchRounded />}</p>

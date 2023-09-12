@@ -2,29 +2,30 @@ import { Button, FilledInput, FormControl, IconButton, InputAdornment, InputLabe
 import { Close, Save, Visibility, VisibilityOff } from '@mui/icons-material';
 import styled from "styled-components";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { TTbc } from "@/@types/TTbc";
+import { createTbc } from "@/functions/createTbc";
 
 export const FlexContainer = styled.div`
     display: flex;
     justify-content: space-around;
     margin-top: 1.25rem;
 `;
-type TTbc = {
-    description: string,
-    username: string,
-    password: string,
-    codcoligada: number,
-    sistema: string,
-    tbc: string
+type PropsPopup = {
+    onClickPopup: (arg: boolean) => void,
+    handleFather: () => void,
+    userId :string
 }
 
-export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg: boolean) => void }) {
+export default function PopupCadastroTbc({ onClickPopup, userId, handleFather }:PropsPopup) {
     const [dataForm, setDataForm] = useState<TTbc>({
         description:'',
         username:'',
         password:'',
-        codcoligada: 0,
-        sistema:'',
-        tbc:''
+        cod_coligada: 0,
+        cod_sistema:'',
+        tbc:'',
+        homolog: true,
+        cod_filial:'1'
     })
 
     const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
@@ -41,9 +42,12 @@ export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg:
             [name]:value
         }))
     }
-    const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(dataForm)
+        console.log(userId,dataForm)
+        await createTbc({userId,dataForm})
+        onClickPopup(false)
+        await handleFather()
     }
     const [showPassword, setShowPassword] = useState<boolean>(false)
 
@@ -85,14 +89,14 @@ export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg:
                             />
                         </FlexContainer >
                         <FlexContainer >
-                            <TextField id="codcoligada" label="Cod. Coligada" sx={{ width: '40%' }} variant="filled" type="number" inputProps={{ min: 0 }} name="codcoligada" value={dataForm.codcoligada} onChange={handleInputChange} required />
+                            <TextField id="codcoligada" label="Cod. Coligada" sx={{ width: '40%' }} variant="filled" type="number" inputProps={{ min: 0 }} name="cod_coligada" value={dataForm.cod_coligada} onChange={handleInputChange} required />
                             <FormControl id="sistema" variant="filled" sx={{ minWidth: '40%' }}>
                                 <InputLabel id="demo-simple-select-filled-label">Sistema</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-filled-label"
                                     id="demo-simple-select-filled"
-                                    name="sistema"
-                                    value={dataForm.sistema}
+                                    name="cod_sistema"
+                                    value={dataForm.cod_sistema}
                                     onChange={handleSelectChange}
                                     required
                                 >

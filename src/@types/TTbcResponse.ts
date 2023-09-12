@@ -15,6 +15,8 @@ export type TTbcResponse = [{
         homolog: boolean,
         cod_coligada: number,
         cod_sistema: string,
-        cod_filial: string
+        cod_filial: string,
+        username:string,
+        password:string
     }>
 }]
