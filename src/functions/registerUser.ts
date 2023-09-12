@@ -3,7 +3,7 @@ import { TRegisterResponse } from "@/@types/TRegisterResponse";
 
 const registerUser = async (formData: TRegister): Promise<TRegisterResponse> => {
     try {
-        const require = await fetch(`https://rubeus-portal-consultas.cyclic.app/register`, {
+        const require = await fetch(`https://rubeus-portal-consulta.cyclic.app/register`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",

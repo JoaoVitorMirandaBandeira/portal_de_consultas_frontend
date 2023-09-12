@@ -1,15 +1,50 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { Close, Save } from '@mui/icons-material';
 import styled from "styled-components";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 export const FlexContainer  = styled.div`
     display: flex;
     justify-content: space-around;
     margin-top: 1.25rem;
 `;
-
+type TTbc = {
+    description: string,
+    username: string,
+    password: string,
+    codcoligada: number,
+    sistema: string,
+    tbc: string
+}
 
 export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg: boolean) => void }) {
+    const [dataForm, setDataForm] = useState<TTbc>({
+        description:'',
+        username:'',
+        password:'',
+        codcoligada: 0,
+        sistema:'',
+        tbc:''
+    })
+
+    const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
+        const {name,value} = event.target
+        setDataForm((prevData) => ({
+            ...prevData,
+            [name]:value
+        }))
+    }
+    const handleSelectChange = (event:SelectChangeEvent) => {
+        const {name,value} = event.target
+        setDataForm((prevData) => ({
+            ...prevData,
+            [name]:value
+        }))
+    }
+    const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        console.log(dataForm)
+    }
     return (
         <div className="bg-primaryRubeus-transparente bg-opacity-50 z-50 h-[100%] w-screen fixed flex justify-center items-center">
             <div className="bg-gray-400 rounded-t-md w-[27rem]">
@@ -18,34 +53,38 @@ export default function PopupCadastroTbc({ onClickPopup }: { onClickPopup: (arg:
                     <button className="w-5 h-7 text-xl text-primaryRubeus-gray" onClick={() => { onClickPopup(false) }}><Close /></button>
                 </div>
                 <div className="bg-white">
-                    <form className="flex flex-col justify-between h-[100%]" >
+                    <form className="flex flex-col justify-between h-[100%]" onSubmit={handleFormSubmit} >
                         <div className="flex justify-center mt-5">
-                            <TextField id="description" label="Descrição" variant="filled" sx={{width: '90%'}} />
+                            <TextField id="description" label="Descrição" variant="filled" sx={{width: '90%'}} name="description" value={dataForm.description} onChange={handleInputChange}  required/>
                         </div>
                         <FlexContainer >
-                            <TextField id="username" label="Usuario" sx={{ width: '40%' }} variant="filled" type="text" />
-                            <TextField id="password" label="Senha" sx={{width: '40%' }} variant="filled" type="password" />
+                            <TextField id="username" label="Usuario" sx={{ width: '40%' }} variant="filled" type="text" name="username" value={dataForm.username} onChange={handleInputChange} required />
+                            <TextField id="password" label="Senha" sx={{width: '40%' }} variant="filled" type="password" name="password" value={dataForm.password} onChange={handleInputChange}  required/>
                         </FlexContainer >
                         <FlexContainer >
-                            <TextField id="codcoligada" label="Cod. Coligada" sx={{width: '40%' }} variant="filled" type="number" inputProps={{ min: 0 }} />
+                            <TextField id="codcoligada" label="Cod. Coligada" sx={{width: '40%' }} variant="filled" type="number" inputProps={{ min: 0 }} name="codcoligada" value={dataForm.codcoligada} onChange={handleInputChange} required />
                             <FormControl id="sistema" variant="filled" sx={{ minWidth: '40%' }}>
                                 <InputLabel id="demo-simple-select-filled-label">Sistema</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-filled-label"
                                     id="demo-simple-select-filled"
+                                    name="sistema"
+                                    value={dataForm.sistema}
+                                    onChange={handleSelectChange}
+                                    required
                                 >
                                     <MenuItem value={'S'}>S</MenuItem>
                                 </Select>
                             </FormControl>
                         </FlexContainer >
                         <FlexContainer className="items-center mb-5" >
-                            <TextField id="tbc" label="Link TBC" variant="filled" sx={{width: '60%' }} />
+                            <TextField id="tbc" label="Link TBC" variant="filled" sx={{width: '60%' }} name="tbc" value={dataForm.tbc} onChange={handleInputChange} required/>
                             <Button variant="outlined" style={{ fontWeight: 700,color:'#0da6a6', height:36  }}>Validar</Button>
                         </FlexContainer >
                         <div className="h-[50px]">
                             <hr className="pb-1" />
                             <div className="flex justify-end pr-3">
-                                <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 700 }}><Save sx={{ fontSize: '21px', paddingRight: '6px' }} />Salvar</Button>
+                                <Button variant="contained" style={{ backgroundColor: '#0DA6A6', fontWeight: 700 }} type="submit"><Save sx={{ fontSize: '21px', paddingRight: '6px' }} />Salvar</Button>
                             </div>
                         </div>
                     </form>

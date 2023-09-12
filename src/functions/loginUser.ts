@@ -3,7 +3,7 @@ import { TLoginResponse } from "@/@types/TLoginResponse";
 
 const loginUser = async (formData:TLogin) :Promise<TLoginResponse> => {
     try {
-        const require = await fetch(`https://rubeus-portal-consultas.cyclic.app/login`,{
+        const require = await fetch(`https://rubeus-portal-consulta.cyclic.app/login`,{
             method:"POST",
             headers: {
                 "Accept": "application/json",
